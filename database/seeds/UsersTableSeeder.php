@@ -12,16 +12,9 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $data = [
-        	[
-        		'name' => 'admin',
-        		'email' => 'admin@gmail.com',
-        		'password' => bcrpyt('qweasd123')
-        	],
-        	[
-        		'name' => 'guest',
-        		'email' => 'guest@gmail.com',
-        		'password' => bcrpyt('qweasd123')
-        	]
+        	['name' => 'admin', 'email' => 'admin@gmail.com', 'password' => bcrypt('qweasd123')],
+        	['name' => 'guest', 'email' => 'guest@gmail.com', 'password' => bcrypt('qweasd123')],
+
         ];
 
         DB::table('users')->insert($data);

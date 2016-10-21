@@ -21,7 +21,7 @@ class CreateBooksTable extends Migration
             $table->text('description');;
             $table->date('published_at');
             $table->string('cover')->nullable();
-            $tale->integer('stock');
+            $table->integer('stock');
             $table->integer('who_insert')->unsigned();
             $table->timestamps();
         });
