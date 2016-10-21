@@ -149,6 +149,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\Notifications\NotificationServiceProvider::class,
 
+        Spatie\Fractal\FractalServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
