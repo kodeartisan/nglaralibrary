@@ -22,12 +22,17 @@ class CreateBooksTable extends Migration
             $table->date('published_at');
             $table->string('cover')->nullable();
             $tale->integer('stock');
+            $table->integer('who_insert')->unsigned();
             $table->timestamps();
         });
 
         Schema::table('books',  function($table) {
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
+            
+            $table->foreign('who_insert')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
+
+
     }
 
     /**
