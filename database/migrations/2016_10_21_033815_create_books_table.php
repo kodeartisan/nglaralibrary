@@ -24,6 +24,10 @@ class CreateBooksTable extends Migration
             $tale->integer('stock');
             $table->timestamps();
         });
+
+        Schema::table('books',  function($table) {
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
+        });
     }
 
     /**
