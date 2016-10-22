@@ -4,4 +4,10 @@ import {Component} from "@angular/core";
     template: require('./app.component.html'),
     styles: [require('./app.component.scss')]
 })
-export class AppComponent {}
+export class AppComponent {
+
+	construct() {
+		 
+	}
+
+}

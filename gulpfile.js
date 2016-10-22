@@ -84,15 +84,17 @@ elixir(function(mix) {
     ], 'public/js/all.js', 'public/js');
     
     mix.styles([
+        '../../node_modules/semantic-ui-css/semantic.min.css',
         'app.css'
     ], 'public/css/all.css', 'public/css');
 
-    mix.browserSync({
+   /* mix.browserSync({
         files: [
             "public/js/*",
             "public/css/*"
         ],
         proxy: "localhost:8000"
-    });
+    });*/
 
 });
+
