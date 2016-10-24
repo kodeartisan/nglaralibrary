@@ -10,12 +10,6 @@
         @endif
     </head>
     <body>
-        <my-app>Loading...</my-app>
-        @if (App::environment('production'))
-            <script src="{{ elixir('js/all.js') }}"></script>
-        @else
-            <script src="{{ elixir('js/vendor.js') }}"></script>
-            <script src="{{ elixir('js/app.js') }}"></script>
-        @endif
+      
     </body>
 </html>

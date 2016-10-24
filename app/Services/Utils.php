@@ -14,4 +14,14 @@ class Utils
 	{
 		return is_int($integer);
 	}
+
+	/**
+	 * Check if is null or empty
+	 * @param  mixed $data 
+	 * @return boolean      
+	 */
+	public function isNullOrEmpty($data)
+	{
+		return empty($data) || is_null($data);
+	}
 }

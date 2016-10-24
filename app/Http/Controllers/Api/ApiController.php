@@ -4,13 +4,17 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller as BaseController;
 use App\Services\Utils;
+use Spatie\Fractal;
 
 abstract class ApiController extends BaseController
 {
+
 	/**
 	 * @var Utils
 	 */
 	protected $utils;
+
+
 
 	/**
 	 * HTTP Request messages code
@@ -28,9 +32,10 @@ abstract class ApiController extends BaseController
      * 
      * @param Utils $utils 
      */
-	public function __construct(Utils $utils)
+	public function __construct(Utils $utils ,Fractal $fractal)
 	{
 		$this->utils = $utils;
+
 	}
 
 	/**
@@ -47,9 +52,9 @@ abstract class ApiController extends BaseController
 	 * @param  object $callback 
 	 * @return json          
 	 */
-	protected function respondWithItem($item, $callback)
+	protected function respondWithItem($item, $callback, array $includes = [])
 	{
-		return fractal()->items($item)->transformWith($callback)->toJson();
+		return fractal()->items($item)->transformWith($callback)->parseIncludes($includes)->toJson();
 	}
 
 	/**
@@ -59,9 +64,9 @@ abstract class ApiController extends BaseController
 	 * @param  object $callback 
 	 * @return json          
 	 */
-	protected function respondWithCollection($collection, $callback)
+	protected function respondWithCollection($collection, $callback, array $includes = [])
 	{
-		return fractal()->collection($collection)->transformWith($callback)->toJson();
+		
 
 	}
 
