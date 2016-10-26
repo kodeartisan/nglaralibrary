@@ -94,6 +94,13 @@ abstract class ApiController extends BaseController
 		return $this;
 	}
 
+	protected function respondSuccess(array $data = [], $statusCode = 200)
+	{
+		$this->statusCode = $statusCode;
+
+		return response()->json(['data' => $data]);
+	}
+
 	/**
 	 * Response error
 	 * 
@@ -158,9 +165,9 @@ abstract class ApiController extends BaseController
 	  * @param  string $messsage  
 	  * @return json          
 	  */
-	 protected function errorUnauhorized($message = 'Unauthorized')
+	 protected function errorUnauthorized($message = 'Unauthorized')
 	 {
-	 	return $this->statusCode(401)
+	 	return $this->setStatusCode(401)
 	 		->respondWithError($message, self::CODE_UNAUTHORIZED);
 	 }
 

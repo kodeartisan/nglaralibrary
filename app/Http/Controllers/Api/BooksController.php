@@ -63,7 +63,7 @@ class BooksController extends ApiController
 	 */
 	public function store()
 	{
-
+		
 	}
 
 	public function update()
