@@ -20,7 +20,7 @@ class Utils
 	 * @param  mixed $data 
 	 * @return boolean      
 	 */
-	public function isNullOrEmpty($data)
+	public static function isNullOrEmpty($data)
 	{
 		return empty($data) || is_null($data);
 	}

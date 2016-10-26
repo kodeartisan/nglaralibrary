@@ -32,7 +32,7 @@ class EloquentBookRepository implements BookRepository
 
 	public function all($orderBy = 'DESC', $columns =  ['*'], $paginate = 10)
 	{
-		return $this->model->with('category')->orderBy('id', $orderBy)->paginate($paginate, $columns);
+		return $this->model->with('category')->with('user')->orderBy('id', $orderBy)->paginate($paginate, $columns);
 	}
 
 	public function create(array $data = [])
@@ -41,8 +41,15 @@ class EloquentBookRepository implements BookRepository
 	}
 
 	public function delete($id)
-	{
+	{	
+		if($this->util->isNullOrEmpty()) {
+			throw new InvalidArgumentException("Invalid ID", 1);
+			
+		}
 
+		$book = $this->model->whereId($id)->first();
+
+		return $book->delete();
 	}
 
 	public function update(array $data = [], $id = null,  $attribute = 'id')
@@ -71,5 +78,10 @@ class EloquentBookRepository implements BookRepository
 		return $book;
 
 
+	}
+
+	public function getItemBy($attribute = 'id', $value = null, $columns = ['*'])
+	{
+		return $this->model->where($attribute, $value)->with('category')->first($columns);
 	}
 }

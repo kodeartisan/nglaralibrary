@@ -11,12 +11,6 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $data = [
-        	['name' => 'admin', 'email' => 'admin@gmail.com', 'password' => bcrypt('qweasd123')],
-        	['name' => 'guest', 'email' => 'guest@gmail.com', 'password' => bcrypt('qweasd123')],
-
-        ];
-
-        DB::table('users')->insert($data);
+        factory(App\User::class, config('seeding.user'))->create();
     }
 }

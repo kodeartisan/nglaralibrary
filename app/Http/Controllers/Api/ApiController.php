@@ -32,9 +32,10 @@ abstract class ApiController extends BaseController
      * 
      * @param Utils $utils 
      */
-	public function __construct(Utils $utils ,Fractal $fractal)
+	public function __construct(Utils $utils)
 	{
 		$this->utils = $utils;
+
 
 	}
 
@@ -145,7 +146,7 @@ abstract class ApiController extends BaseController
 	  * @param  string $messsage  
 	  * @return json          
 	  */
-	 protected function errorNotFound($messsage = 'Resouce not found')
+	 protected function errorNotFound($message = 'Resource not found')
 	 {
 	 	return $this->setStatusCode(404)
 	 		->respondWithError($message, self::CODE_NOT_FOUND);
