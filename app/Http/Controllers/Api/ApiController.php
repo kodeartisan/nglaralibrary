@@ -19,7 +19,8 @@ abstract class ApiController extends BaseController
 	/**
 	 * HTTP Request messages code
 	 */
-	const CODE_WRONG_ARGS = 'GEN-WRONG_ARGS';
+	const CODE_SUCCESS = 'GEN-SUCCESS';
+	const CODE_BAD_REQUEST = 'GEN-WRONG_ARGS';
 	const CODE_NOT_FOUND = 'GEN-NOT_FOUND';
     const CODE_INTERNAL_ERROR = 'GEN-INTERNAL_ERROR';
     const CODE_UNAUTHORIZED = 'GEN-UNAUTHORIZED';
@@ -123,6 +124,17 @@ abstract class ApiController extends BaseController
 	 		]);
 	 }
 
+	 protected function respondWithSuccess($message = '')
+	 {
+	 	return response()->json([
+	 			'success' => [
+	 				'code' => self::CODE_SUCCESS,
+	 				'http_code' => $this->statusCode,
+	 				'message' => $message
+	 			]
+	 		]);
+	 }
+
 	 /**
 	  * Generates a Response with a 403 HTTP header and a given message.
 	  * 
@@ -178,10 +190,10 @@ abstract class ApiController extends BaseController
 	  * @param  string $messsage  
 	  * @return json          
 	  */
-	 protected function errorWrongArgs($message = 'Wrong Arguments')
+	 protected function errorBadRequest($message = 'Bad Request')
 	 {
 	 	return $this->setStatusCode(400)
-	 		->respondWithError($message, self::CODE_WRONG_ARGS);
+	 		->respondWithError($message, self::CODE_BAD_REQUEST);
 	 }
 
 

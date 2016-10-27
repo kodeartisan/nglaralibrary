@@ -3,20 +3,16 @@
 namespace App\Repositories\Book;
 
 use App\Book;
-use App\Services\Utils;
+use App\Repositories\EloquentAbstractRepository;
 
 
-class EloquentBookRepository implements BookRepository
+class EloquentBookRepository extends EloquentAbstractRepository  implements BookRepository
 {
 	/**
 	 * @var Book
 	 */
 	private $model;
 
-	/**
-	 * @var Util
-	 */
-	protected $util;
 
 	/**
 	 * Constructor instance
@@ -24,15 +20,15 @@ class EloquentBookRepository implements BookRepository
 	 * @param Book $model
 	 * @param Utils $util
 	 */
-	public function __construct(Book $model, Utils $util)
+	public function __construct(Book $model)
 	{
 		$this->model = $model;
-		$this->util = $util;
+		 
 	}
 
-	public function all($orderBy = 'DESC', $columns =  ['*'], $paginate = 10)
+	public function getCollection($orderBy = 'DESC', $columns =  ['*'])
 	{
-		return $this->model->with('category')->with('user')->orderBy('id', $orderBy)->paginate($paginate, $columns);
+		return $this->model->with('category')->with('user')->orderBy('id', $orderBy)->paginate($this->paginate, $columns);
 	}
 
 	public function create(array $data = [])
@@ -42,7 +38,7 @@ class EloquentBookRepository implements BookRepository
 
 	public function delete($id)
 	{	
-		if($this->util->isNullOrEmpty()) {
+		if(Utils::isNullOrEmpty()) {
 			throw new InvalidArgumentException("Invalid ID", 1);
 			
 		}
@@ -54,7 +50,7 @@ class EloquentBookRepository implements BookRepository
 
 	public function update(array $data = [], $id = null,  $attribute = 'id')
 	{
-		if($this->util->isNullOrEmpty($id)) {
+		if(Utils::isNullOrEmpty($id)) {
 			throw InvalidArgumentException("Invalid ID");
 		}
 
@@ -80,7 +76,7 @@ class EloquentBookRepository implements BookRepository
 
 	}
 
-	public function getItemBy($attribute = 'id', $value = null, $columns = ['*'])
+	public function getItem($attribute = 'id', $value = null, $columns = ['*'])
 	{
 		return $this->model->where($attribute, $value)->with('category')->first($columns);
 	}

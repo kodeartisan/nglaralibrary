@@ -24,5 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('App\Repositories\Book\BookRepository', 'App\Repositories\Book\EloquentBookRepository' );
+
+         $this->app->bind('App\Repositories\Category\CategoryRepository', 'App\Repositories\Category\EloquentCategoryRepository' );
     }
 }

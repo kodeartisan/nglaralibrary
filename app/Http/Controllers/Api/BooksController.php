@@ -33,7 +33,7 @@ class BooksController extends ApiController
 	public function index()
 	{
 		 	
-		$books = $this->bookRepository->all();
+		$books = $this->bookRepository->getCollection();
 		return fractal()->collection($books, new BookTransformer)
 						->paginateWith(new IlluminatePaginatorAdapter($books))
 						->toJson();

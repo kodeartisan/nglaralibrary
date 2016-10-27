@@ -20,7 +20,6 @@
 
 // this route is for Angular and it should be placed after all other back end routes
 // just keep it at the bottom
-/*Route::get('/{any}', function ($any) {
+Route::get('/{any}', function ($any) {
     return view('welcome');
 })->where('any', '.*');
-*/

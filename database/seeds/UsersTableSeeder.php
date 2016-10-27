@@ -11,6 +11,6 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\User::class, config('seeding.user'))->create();
+        factory(App\User::class, config('nglaralibrary'))->create();
     }
 }

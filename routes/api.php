@@ -16,7 +16,7 @@
  Route::delete('/logout', ['uses' => 'Api\AuthController@logout', 'as' => 'api.auth.logout']);
 
 
- Route::group(['middleware' => 'jwt.auth'], function() {
+ Route::group([ ], function() {
 
 	/**
 	 * ==================================================================
@@ -37,6 +37,8 @@
 	 */
 
 	Route::get('/categories', ['uses' => 'Api\CategoriesController@index', 'as' => 'api.categories.index']);
+
+	Route::post('/categories', ['uses' => 'Api\CategoriesController@store', 'as' => 'api.categories.store']);
 
 	Route::get('/categories/{id}', ['uses' => 'Api\CategoriesController@show', 'as' => 'api.categories.show']);
 
