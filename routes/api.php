@@ -28,6 +28,22 @@
 	Route::delete('/books/{id}', ['uses' => 'Api\BooksController@destroy','as' => 'api.books.destroy']);
 	Route::patch('/books/{id}', ['uses' => 'Api\BooksController@update', 'as' => 'api.books.update']);
 
+
+
+	/**
+	 * ==================================================================
+	 *  CATEGORIES ROUTES
+	 * ================================================================== 							
+	 */
+
+	Route::get('/categories', ['uses' => 'Api\CategoriesController@index', 'as' => 'api.categories.index']);
+
+	Route::get('/categories/{id}', ['uses' => 'Api\CategoriesController@show', 'as' => 'api.categories.show']);
+
+	Route::delete('/categories/{id}', ['uses' => 'Api\CategoriesController@destroy', 'as' => 'api.categories.destroy']);
+
+	Route::patch('/categories/{id}', ['uses' => 'Api\CategoriesController@destroy', 'as' => 'api.categories.update']);
+
 });
 
 
